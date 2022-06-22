@@ -18,9 +18,7 @@ export function SingleItem(props: SingleItemProps) {
         <div className="product-name">{props.name}</div>
         <div className="product-price">
           <div className="product-price-amount">
-            {props.buyNowPrice
-              ? props.buyNowPrice + " "
-              : "nie ma ceny wariacie"}
+            {props.buyNowPrice ? props.buyNowPrice + " " : "cena niedostępna"}
           </div>
           <div className="product-price-currency">
             {currencyDictionary[props.currency]}
