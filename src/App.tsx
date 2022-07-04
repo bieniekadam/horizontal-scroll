@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { useState } from "react";
 import "./App.css";
 import axios, { AxiosResponse } from "axios";
@@ -8,8 +8,8 @@ import { AllegroApiUrl } from "./constants/api-url.const";
 import { AllegroResponse } from "./types/allegro-response.type";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
   const carouselWrapper = document.getElementById("offer-carousel-wrapper");
+  const [products, setProducts] = useState<Product[]>([]);
 
   const scrollRight = () => {
     return carouselWrapper?.scrollBy(792, 0);
@@ -23,6 +23,8 @@ function App() {
     axios
       .get(AllegroApiUrl)
       .then((response: AxiosResponse<AllegroResponse>) => {
+        // console.log("updating useState");
+
         setProducts(response.data.offers);
       });
   }, []);
